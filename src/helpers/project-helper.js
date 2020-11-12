@@ -36,7 +36,7 @@ export class ProjectHelper {
 
     createMessageForNoTaskOrProject(projects, isSpecialFilter, filter) {
         if (!isSpecialFilter || filter.length === 0 || projects.length > 0) return ""
-        
+
         if (!filter.includes("@")) {
             return "No matching tasks. Search projects with @project syntax"
         } else {
@@ -73,7 +73,7 @@ export class ProjectHelper {
         } else {
             const projectIds = [];
             projectIds.push(defaultProjectForWorkspaceAndUser.project.id);
-            
+
             return this.getProjectsByIds(projectIds)
         }
     }
@@ -127,9 +127,9 @@ export class ProjectHelper {
 
     setLastUsedProjectAsDefaultProject() {
         let lastUsedProject = {};
-        
+
         lastUsedProject.id = getDefaultProjectEnums().LAST_USED_PROJECT;
-    
+
         this.setDefaultProject(lastUsedProject)
     }
 
@@ -167,11 +167,12 @@ export class ProjectHelper {
                     defProject.workspaceId === activeWorkspaceId && defProject.userId === userId)[0] : null;
     }
 
-    getProjectForButton(projectName) {
+    getProjectForButton(options) {
         const page = 0;
         const pageSize = 50;
         let projectFilter;
         let project = null;
+        let projectName = options.projectName;
 
         if (!!projectName) {
             const isSpecialFilter =
@@ -185,7 +186,13 @@ export class ProjectHelper {
 
             return projectService.getProjectsWithFilter(projectFilter, page, pageSize).then(response => {
                 if (response && response.data && response.data.length > 0) {
-                    project = response.data.filter(project => project.name === projectName)[0];
+                    if (options.projectPartialMatch === true) {
+                        let escapedProjectName = projectName.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&');
+                        let regExProjectName = new RegExp('^'+escapedProjectName);
+                        project = response.data.filter(project => regExProjectName.test(project.name))[0];
+                    } else {
+                        project = response.data.filter(project => project.name === projectName)[0];
+                    }
                 }
 
                 if (project) {
