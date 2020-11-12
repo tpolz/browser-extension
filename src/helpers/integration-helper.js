@@ -136,7 +136,7 @@ async function getOrCreateTags(tagNames) {
     if (existingTagsResponse.status !== 200) {
         return [];
     }
-    
+
     const existingTags = existingTagsResponse.data;
     const tags = [];
 
@@ -163,7 +163,7 @@ async function getOrCreateTags(tagNames) {
 
 async function startTimeEntryRequestAndFetch (timeEntryUrl, token, options) {
     const headers =  new Headers(httpHeadersHelper.createHttpHeaders(token));
-    const project = await projectHelpers.getProjectForButton(options.projectName);
+    const project = await projectHelpers.getProjectForButton(options);
 
     let task = null;
     if (project && options.taskName) {
