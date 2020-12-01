@@ -18,9 +18,9 @@
     "clone": false
   },
   "azure.com": {
-    "name": "Azure",
-    "link": "*://*.azure.com/*",
-    "script": "azure.js",
+    "name": "Azure Tanner-Testing",
+    "link": "*://*.azure.com/Tanner-Testing/*",
+    "script": "azure-testing.js",
     "clone": false
   },
   "basecamp.com": {
@@ -360,8 +360,8 @@
     "clone": false
   },
   "visualstudio.com": {
-    "name": "VisualStudio",
-    "link": "*://*.visualstudio.com/*",
+    "name": "VisualStudio - KiewitCorp",
+    "link": "*://*.kiewitcorp.visualstudio.com/*",
     "script": "azure.js",
     "clone": false
   },

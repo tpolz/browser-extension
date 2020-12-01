@@ -1,6 +1,6 @@
 function createDevOpsObject(devOpsID, devOpsDescription) {
   var tempIdText, tempDescription, devOpsObject;
-  tempIdText = "[DO:" + devOpsID +"]";
+  tempIdText = "[DOT:" + devOpsID +"]";
   tempDescription = tempIdText + " - " + devOpsDescription;
   devOpsObject = {
     idText: tempIdText,
@@ -96,7 +96,7 @@ var edtElementSelector = '[aria-label="EDT Ticket No"]';
 var edtParentSelector = '.control';
 var edtElement, edtParent;
 
-waitForElementToDisplay(addFreshdeskLink,1000,9000);
+waitForElementToDisplay(addFreshdeskLink,1000,5000);
 
 function waitForElementToDisplay(callback, checkFrequencyInMs, timeoutInMs) {
   var startTimeInMs = Date.now();
@@ -140,6 +140,12 @@ function addFreshdeskLink() {
   edtParent.appendChild(a);
   updateEdtLink(a, edtTicketValue);
   edtElement.addEventListener("input",function () {
+    edtElement = document.querySelector(edtElementSelector);
+    if (edtElement && edtElement.value != null) {
+      updateEdtLink(a,edtElement.value);
+    };
+  });
+  edtElement.addEventListener("change",function () {
     edtElement = document.querySelector(edtElementSelector);
     if (edtElement && edtElement.value != null) {
       updateEdtLink(a,edtElement.value);

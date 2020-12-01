@@ -22,5 +22,18 @@ clockifyButton.render('.page-actions__left:not(.clockify)', { observe: true }, f
         link.style.marginLeft = "10px";
         link.style.display = "inline-flex";
         link.style.verticalAlign = "middle";
+
+        var inputForm = clockifyButton.createInput({
+          description: freshdeskObject.fullDescription,
+          projectName: freshdeskObject.idText,
+          projectPartialMatch: true
+        });
+        console.log("asdfg");
+        console.log(inputForm);
+        console.log(freshdeskObject.fullDescription);
+        console.log(freshdeskObject.idText);
+        inputForm.style.display = "inline";
+        inputForm.style.marginLeft = '10px';
         elem.append(link);
+        elem.append(inputForm);
 });
