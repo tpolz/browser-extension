@@ -1,7 +1,7 @@
 {
   "manifest_version" : 2,
-  "name": "Clockify Time Tracker",
-  "short_name": "Clockify",
+  "name": "Clockify Time Tracker for Kiewit EDT",
+  "short_name": "Clockify EDT",
   "description": "Track time from anywhere on the web and improve productivity.",
   "background": {
     "scripts": [
@@ -19,7 +19,7 @@
       "contentScripts/project-httpRequests-background.js"
     ]
   },
-  "version": "1.8.53",
+  "version": "1.0.0",
   "browser_action": {
     "default_popup": "index.html",
     "default_title": "Clockify"
